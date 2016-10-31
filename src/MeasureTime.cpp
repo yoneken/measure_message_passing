@@ -12,11 +12,7 @@ MeasureTime::MeasureTime(ros::NodeHandle nh, ros::NodeHandle private_nh)
 	root_nh_.param<bool>("pointer", flag_pointer_, false);
 	root_nh_.param("stop_count", stop_count_, 100000);
 
-	if(!flag_pointer_){
-		pub_ = root_nh_.advertise<std_msgs::Time>("pub", 10);
-	}else{
-		pub_ = root_nh_.advertise<std_msgs::Time>("pub", 10);
-	}
+	pub_ = root_nh_.advertise<std_msgs::Time>("pub", 10);
 
 	// init pub/sub
 	sub_ = root_nh_.subscribe("sub", 10, &MeasureTime::callback, this);
@@ -50,7 +46,7 @@ void MeasureTime::countUp(double delay)
 			now.data = ros::Time::now();
 			pub_.publish(now);
 		}else{
-			boost::shared_ptr<std_msgs::Time>now(new std_msgs::Time());
+			std_msgs::TimePtr now(new std_msgs::Time);
 			now->data = ros::Time::now();
 			pub_.publish(now);
 		}

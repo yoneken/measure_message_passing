@@ -17,15 +17,13 @@ int main(int argc, char *argv[])
 
 	if(flag_start){
 		sleep(2);
-		ros::Publisher pub_;
+		ros::Publisher pub_ = nh.advertise<std_msgs::Time>("pub", 10);
 		if(!flag_pointer){
-			pub_ = nh.advertise<std_msgs::Time>("pub", 10);
 			std_msgs::Time now;
 			now.data = ros::Time::now();
 			pub_.publish(now);
 		}else{
-			pub_ = nh.advertise<std_msgs::Time>("pub", 10);
-			boost::shared_ptr<std_msgs::Time>now(new std_msgs::Time());
+			std_msgs::TimePtr now(new std_msgs::Time);
 			now->data = ros::Time::now();
 			pub_.publish(now);
 		}

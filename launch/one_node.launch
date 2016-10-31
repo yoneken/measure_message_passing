@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="pointer" default="false" />
-  <arg name="stop_count" default="100000" />
+  <arg name="stop_count" default="10000" />
 
   <node pkg="measure_message_passing" type="measure_message_passing_node" name="measure_message_passing1"
         output="screen" required="true" >
