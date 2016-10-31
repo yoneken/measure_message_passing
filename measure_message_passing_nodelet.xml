@@ -1,0 +1,11 @@
+<library path="lib/libmeasure_message_passing_nodelet">
+
+  <class name="measure_message_passing/MeasureTimeNodelet"
+	 type="measure_message_passing::MeasureTimeNodelet"
+	 base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet to measure the time of message passing between nodes.
+    </description>
+  </class>
+
+</library>
