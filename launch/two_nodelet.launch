@@ -4,8 +4,11 @@
   <arg name="pointer" default="false" />
   <arg name="stop_count" default="10000" />
   <arg name="manager" default="nodelet_manager" />
+  <arg name="num_worker_threads" default="4" />
 
-  <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen" />
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen">
+     <param name="num_worker_threads" value="$(arg num_worker_threads)" />
+  </node>
 
   <node pkg="nodelet" type="nodelet" name="node0"
         args="load measure_message_passing/MeasureTimeNodelet $(arg manager)" >
