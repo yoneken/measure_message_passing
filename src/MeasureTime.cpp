@@ -29,6 +29,7 @@ void MeasureTime::callback(const sensor_msgs::ImageConstPtr &img)
 {
 	double delay = (ros::Time::now() - img->header.stamp).toSec();
 	countUp(delay);
+	//std::cout << delay << std::endl;
 }
 
 void MeasureTime::countUp(double delay)
@@ -53,9 +54,10 @@ void MeasureTime::countUp(double delay)
 			img.is_bigendian = msg->is_bigendian;
 			img.step = msg->step;
 			img.data = msg->data;
-			img.header = std_msgs::Header();
+			img.header.stamp = ros::Time::now();
 			pub_.publish(img);
 		}else{
+			msg->header.stamp = ros::Time::now();
 			pub_.publish(msg);
 		}
 	}

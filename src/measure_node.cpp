@@ -29,9 +29,10 @@ int main(int argc, char *argv[])
 			img.is_bigendian = msg->is_bigendian;
 			img.step = msg->step;
 			img.data = msg->data;
-			img.header = std_msgs::Header();
+			img.header.stamp = ros::Time::now();
 			pub_.publish(img);
 		}else{
+			msg->header.stamp = ros::Time::now();
 			pub_.publish(msg);
 		}
 	}
