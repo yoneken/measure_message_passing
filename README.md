@@ -40,10 +40,10 @@ To set message passing count, set stop_count:=value.
 * Linux: 4.4.0-45-generic
 * Ubuntu: 14.04.1
 * ROS: indigo
-  - one_node (not pointer):    Mean: 9.87470e-06, Median: 9.85322e-06, Max: 0.000259214
-  - one_node (pointer):        Mean: 9.50545e-06, Median: 9.49499e-06, Max: 0.000259395
-  - two_node (not_pointer):    Mean: 2.34549e-05, Median: 2.44388e-05, Max: 0.00311695
-  - two_node (pointer):        Mean: 2.28278e-05, Median: 2.32482e-05, Max: 0.00400325
-  - two_nodelet (not pointer): Mean: 1.51631e-05, Median: 1.59681e-05, Max: 0.0019757
-  - two_nodelet (pointer):     Mean: 1.56770e-05, Median: 1.57873e-05, Max: 0.00203611
+  - one_node (not pointer):    Mean: 0.000417616, Median: 0.000419667, Max: 0.00323832
+  - one_node (pointer):        Mean: 0.000400242, Median: 0.000391842, Max: 0.00531147
+  - two_node (not_pointer):    Mean: 0.001161430, Median: 0.001156670, Max: 0.00906191
+  - two_node (pointer):        Mean: 0.001249300, Median: 0.001233170, Max: 0.00832612
+  - two_nodelet (not pointer): Mean: 0.000306608, Median: 0.000308094, Max: 0.00165378
+  - two_nodelet (pointer):     Mean: 0.000304206, Median: 0.000305576, Max: 0.00101942
 

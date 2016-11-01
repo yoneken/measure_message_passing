@@ -43,7 +43,7 @@ void MeasureTime::countUp(double delay)
 			  << "Max: " << extract::max(acc_) << std::endl;
 		ros::shutdown();
 	}else{
-		cv::Mat m(640, 480, CV_8U, cv::Scalar(0,0,255));
+		cv::Mat m(1024, 768, CV_8U, cv::Scalar(0,0,255));
 		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", m).toImageMsg();
 
 		if(!flag_pointer_){
