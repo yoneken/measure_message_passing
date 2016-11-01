@@ -4,7 +4,7 @@
 #include <boost/accumulators/statistics/mean.hpp>
 #include <boost/accumulators/statistics/median.hpp>
 #include <boost/accumulators/statistics/max.hpp>
-#include <std_msgs/Time.h>
+#include <sensor_msgs/Image.h>
 
 using namespace boost::accumulators;
 
@@ -17,8 +17,6 @@ public:
 	//MeasureTime(const ros::NodeHandle& nh=ros::NodeHandle());
 	MeasureTime(ros::NodeHandle nh, ros::NodeHandle private_nh);
 
-	enum Mode{ ros_Time = 0, std_msgs_Time, std_msgs_TimeConstPtr, };
-
 protected:
 	ros::NodeHandle root_nh_;
 	ros::Publisher pub_;
@@ -29,8 +27,8 @@ protected:
 
 	accumulator_set<double, stats<tag::mean, tag::median, tag::max> > acc_;
 
-	void callback(std_msgs::Time time);
-	void callback(const std_msgs::TimeConstPtr &time);
+	void callback(sensor_msgs::Image img);
+	void callback(const sensor_msgs::ImageConstPtr &img);
 
 	void countUp(double delay);
 };

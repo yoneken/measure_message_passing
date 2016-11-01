@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="pointer" default="false" />
-  <arg name="stop_count" default="10000" />
+  <arg name="stop_count" default="1000" />
 
   <node pkg="measure_message_passing" type="measure_message_passing_node" name="measure_message_passing0">
     <param name="pointer" value="$(arg pointer)" type="bool" />

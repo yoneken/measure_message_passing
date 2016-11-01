@@ -1,6 +1,6 @@
 #include <ros/ros.h>
-#include <std_msgs/Time.h>
-#include <boost/shared_ptr.hpp>
+#include <sensor_msgs/Image.h>
+#include <cv_bridge/cv_bridge.h>
 #include <nodelet/nodelet.h>
 #include <measure_message_passing/MeasureTime.h>
 #include <unistd.h>
@@ -34,15 +34,22 @@ void MeasureTimeNodelet::onInit()
 
 	if(flag_start){
 		sleep(2);
-		ros::Publisher pub_ = nh.advertise<std_msgs::Time>("pub", 10);
+		ros::Publisher pub_ = nh.advertise<sensor_msgs::Image>("pub", 10);
+		cv::Mat m(640, 480, CV_8U, cv::Scalar(0,0,255));
+		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", m).toImageMsg();
+
 		if(!flag_pointer){
-			std_msgs::Time now;
-			now.data = ros::Time::now();
-			pub_.publish(now);
+			sensor_msgs::Image img = sensor_msgs::Image();
+			img.height = msg->height;
+			img.width = msg->width;
+			img.encoding = msg->encoding;
+			img.is_bigendian = msg->is_bigendian;
+			img.step = msg->step;
+			img.data = msg->data;
+			img.header = std_msgs::Header();
+			pub_.publish(img);
 		}else{
-			std_msgs::TimePtr now(new std_msgs::Time);
-			now->data = ros::Time::now();
-			pub_.publish(now);
+			pub_.publish(msg);
 		}
 	}
 }

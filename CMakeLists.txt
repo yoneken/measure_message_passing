@@ -8,7 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   nodelet
   pluginlib
   roscpp
-  std_msgs
+  sensor_msgs
+  cv_bridge
 )
 
 ## System dependencies are found with CMake's conventions
