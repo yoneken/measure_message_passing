@@ -1,6 +1,37 @@
 # measure_message_passing
 Test package to measure the time of message passing between ROS nodes.
 
+# Usage
+
+## Single node
+
+```sh:
+roslaunch measure_message_passing one_node.launch
+(after some minutes, results will show.)
+```
+
+## Two nodes
+
+```sh:
+roslaunch measure_message_passing two_node.launch
+(after some minutes, results will show.)
+```
+
+## Two nodelets
+
+```sh:
+roslaunch measure_message_passing two_nodelet.launch
+(after some minutes, results will show.)
+```
+
+## Arguments
+
+### pointer
+Using shared_ptr, set pointer:=true.
+
+### stop_count
+To set message passing count, set stop_count:=value.
+
 # Result
 
 ## msi GS30 2M
