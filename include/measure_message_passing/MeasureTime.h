@@ -23,12 +23,14 @@ protected:
 	ros::Subscriber sub_;
 
 	int counter_, stop_count_;
-	bool flag_pointer_;
 
 	accumulator_set<double, stats<tag::mean, tag::median, tag::max> > acc_;
 
+#ifndef use_ptr
 	void callback(sensor_msgs::Image img);
+#else
 	void callback(const sensor_msgs::ImageConstPtr &img);
+#endif
 
 	void countUp(double delay);
 };

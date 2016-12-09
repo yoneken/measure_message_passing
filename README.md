@@ -10,10 +10,24 @@ roslaunch measure_message_passing one_node.launch
 (after some minutes, results will show.)
 ```
 
+## Single node with pointer
+
+```sh:
+roslaunch measure_message_passing one_node_ptr.launch
+(after some minutes, results will show.)
+```
+
 ## Two nodes
 
 ```sh:
 roslaunch measure_message_passing two_node.launch
+(after some minutes, results will show.)
+```
+
+## Two nodes with pointer
+
+```sh:
+roslaunch measure_message_passing two_node_ptr.launch
 (after some minutes, results will show.)
 ```
 
@@ -24,10 +38,14 @@ roslaunch measure_message_passing two_nodelet.launch
 (after some minutes, results will show.)
 ```
 
-## Arguments
+## Two nodelets with pointer
 
-### pointer
-Using shared_ptr, set pointer:=true.
+```sh:
+roslaunch measure_message_passing two_nodelet_ptr.launch
+(after some minutes, results will show.)
+```
+
+## Arguments
 
 ### stop_count
 To set message passing count, set stop_count:=value.
@@ -40,10 +58,10 @@ To set message passing count, set stop_count:=value.
 * Linux: 4.4.0-45-generic
 * Ubuntu: 14.04.1
 * ROS: indigo
-  - one_node (not pointer):    Mean: 0.000417616, Median: 0.000419667, Max: 0.00323832
-  - one_node (pointer):        Mean: 0.000400242, Median: 0.000391842, Max: 0.00531147
-  - two_node (not_pointer):    Mean: 0.001161430, Median: 0.001156670, Max: 0.00906191
-  - two_node (pointer):        Mean: 0.001249300, Median: 0.001233170, Max: 0.00832612
-  - two_nodelet (not pointer): Mean: 0.000306608, Median: 0.000308094, Max: 0.00165378
-  - two_nodelet (pointer):     Mean: 0.000304206, Median: 0.000305576, Max: 0.00101942
+  - one_node (not pointer):    Mean: 0.00140118, Median: 0.00139828, Max: 0.00454532
+  - one_node (pointer):        Mean: 5.4087e-06, Median: 3.53647e-06, Max: 0.000275296
+  - two_node (not_pointer):    Mean: 0.00235323, Median: 0.00236079, Max: 0.00825729
+  - two_node (pointer):        Mean: 0.00088381, Median: 0.00087349, Max: 0.0030891
+  - two_nodelet (not pointer): Mean: 0.000689175, Median: 0.000686938, Max: 0.00333391
+  - two_nodelet (pointer):     Mean: 5.41813e-05, Median: 4.98603e-05, Max: 0.000194368
 

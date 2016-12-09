@@ -11,8 +11,7 @@ int main(int argc, char *argv[])
 
 	measure_message_passing::MeasureTime mt(nh, nh);
 
-	bool flag_pointer, flag_start;
-	nh.param<bool>("pointer", flag_pointer, false);
+	bool flag_start;
 	nh.param<bool>("start", flag_start, true);
 
 	if(flag_start){
@@ -21,20 +20,20 @@ int main(int argc, char *argv[])
 		cv::Mat m(1024, 768, CV_8U, cv::Scalar(0,0,255));
 		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", m).toImageMsg();
 
-		if(!flag_pointer){
-			sensor_msgs::Image img = sensor_msgs::Image();
-			img.height = msg->height;
-			img.width = msg->width;
-			img.encoding = msg->encoding;
-			img.is_bigendian = msg->is_bigendian;
-			img.step = msg->step;
-			img.data = msg->data;
-			img.header.stamp = ros::Time::now();
-			pub_.publish(img);
-		}else{
-			msg->header.stamp = ros::Time::now();
-			pub_.publish(msg);
-		}
+#ifndef use_ptr
+		sensor_msgs::Image img = sensor_msgs::Image();
+		img.height = msg->height;
+		img.width = msg->width;
+		img.encoding = msg->encoding;
+		img.is_bigendian = msg->is_bigendian;
+		img.step = msg->step;
+		img.data = msg->data;
+		img.header.stamp = ros::Time::now();
+		pub_.publish(img);
+#else
+		msg->header.stamp = ros::Time::now();
+		pub_.publish(msg);
+#endif
 	}
 
 	ros::spin();

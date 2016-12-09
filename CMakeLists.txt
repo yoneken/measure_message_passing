@@ -123,6 +123,7 @@ include_directories(
 
 ## Declare a C++ library
 add_library(measure_message_passing_nodelet src/measure_nodelet.cpp src/MeasureTime.cpp)
+add_library(measure_message_passing_nodelet_pointer src/measure_nodelet.cpp src/MeasureTime.cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -131,6 +132,7 @@ add_library(measure_message_passing_nodelet src/measure_nodelet.cpp src/MeasureT
 
 ## Declare a C++ executable
 add_executable(measure_message_passing_node src/measure_node.cpp src/MeasureTime.cpp)
+add_executable(measure_message_passing_node_pointer src/measure_node.cpp src/MeasureTime.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -140,9 +142,19 @@ add_executable(measure_message_passing_node src/measure_node.cpp src/MeasureTime
 target_link_libraries(measure_message_passing_nodelet
   ${catkin_LIBRARIES}
 )
+target_link_libraries(measure_message_passing_nodelet_pointer
+  ${catkin_LIBRARIES}
+)
 target_link_libraries(measure_message_passing_node
   ${catkin_LIBRARIES}
 )
+target_link_libraries(measure_message_passing_node_pointer
+  ${catkin_LIBRARIES}
+)
+
+## Add definitions for specific targets
+target_compile_options(measure_message_passing_nodelet_pointer PUBLIC -Duse_ptr)
+target_compile_options(measure_message_passing_node_pointer PUBLIC -Duse_ptr)
 
 #############
 ## Install ##
@@ -159,12 +171,12 @@ target_link_libraries(measure_message_passing_node
 # )
 
 ## Mark executables and/or libraries for installation
-install(TARGETS measure_message_passing_nodelet
+install(TARGETS measure_message_passing_nodelet measure_message_passing_nodelet_pointer
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-install(TARGETS measure_message_passing_node
+install(TARGETS measure_message_passing_node measure_message_passing_node_pointer
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

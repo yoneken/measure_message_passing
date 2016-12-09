@@ -1,0 +1,14 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <arg name="pointer" default="false" />
+  <arg name="stop_count" default="1000" />
+
+  <node pkg="measure_message_passing" type="measure_message_passing_node_pointer" name="measure_message_passing1"
+        output="screen" required="true" >
+    <param name="pointer" value="$(arg pointer)" type="bool" />
+    <param name="start" value="true" type="bool" />
+    <param name="stop_count" value="$(arg stop_count)" type="int" />
+    <remap from="pub" to="sub" />
+  </node>
+</launch>

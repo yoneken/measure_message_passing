@@ -9,3 +9,14 @@
   </class>
 
 </library>
+<library path="lib/libmeasure_message_passing_nodelet_pointer">
+
+  <class name="measure_message_passing/MeasureTimeNodeletPointer"
+	 type="measure_message_passing::MeasureTimeNodeletPointer"
+	 base_class_type="nodelet::Nodelet">
+    <description>
+      Nodelet to measure the time of message passing using shared_ptr between nodes.
+    </description>
+  </class>
+
+</library>

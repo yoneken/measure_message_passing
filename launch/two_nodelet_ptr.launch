@@ -1,0 +1,31 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <arg name="pointer" default="false" />
+  <arg name="stop_count" default="1000" />
+  <arg name="manager" default="nodelet_manager" />
+  <arg name="num_worker_threads" default="4" />
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" output="screen">
+     <param name="num_worker_threads" value="$(arg num_worker_threads)" />
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="node0"
+        args="load measure_message_passing/MeasureTimeNodeletPointer $(arg manager)" >
+    <param name="pointer" value="$(arg pointer)" type="bool" />
+    <param name="start" value="false" type="bool" />
+    <param name="stop_count" value="$(arg stop_count)" type="int" />
+    <remap from="sub" to="pub1" />
+    <remap from="pub" to="pub0" />
+  </node>    
+
+  <node pkg="nodelet" type="nodelet" name="node1"
+        args="load measure_message_passing/MeasureTimeNodeletPointer $(arg manager)" 
+        required="true" >
+    <param name="pointer" value="$(arg pointer)" type="bool" />
+    <param name="start" value="true" type="bool" />
+    <param name="stop_count" value="$(arg stop_count)" type="int" />
+    <remap from="sub" to="pub0" />
+    <remap from="pub" to="pub1" />
+  </node>
+</launch>
